@@ -1,13 +1,17 @@
 import { longestAlternatingSubarray } from './longestAlternatingSubarrayProblem'
 
-test('returns an empty array when empty array is provided', () => {
+test('returns empty array', () => {
     expect(longestAlternatingSubarray([])).toEqual([])
 })
 
-test('return array when one element array is provided', () => {
+test('return one element array', () => {
     expect(longestAlternatingSubarray([1])).toEqual([1])
 })
 
-test('return array when one element array is provided', () => {
-    expect(longestAlternatingSubarray([1])).toEqual([1])
+test('return longest subarray', () => {
+    expect(longestAlternatingSubarray([1, -1, 1, 1])).toEqual([1, -1, 1])
+})
+
+test('return longest subarray when it is the array itself', () => {
+    expect(longestAlternatingSubarray([1, -1, 1, -1])).toEqual([1, -1, 1, -1])
 })
