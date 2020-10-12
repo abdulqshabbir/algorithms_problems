@@ -1,80 +1,32 @@
-export function findDuplicates(arr: number[], k: number) {
-    let duplicates: number[] = []
+/*
+    Given an array and a positive number k, check if there are any duplicate elements
+    within range k.
 
-    return duplicates
-}
+    If there are, return true.
+    If not, return false.
 
-export function hasDuplicates(subArr: number[]) {
+    Example: [1, 2, 3, 4, 2] should return true if k = 3
+*/
+
+/* Sol */
+
+export function findDuplicates(array: number[], k: number) {
+    // create map which maps array element (key) to array index (value)
     let map = new Map()
 
-    for (let i = 0; i < subArr.length; i++) {
-        if (map.get(subArr[i])) {
-            return true
+    for (let i = 0; i < array.length; i++) {
+        // if map alreay has entry
+        if (map.has(array[i])) {
+
+            // check if entry index is within 'k' indices away from i
+            if (i - map.get(array[i]) <= k) {
+                return true
+            }
         }
-        map.set(subArr[i], 1)
+        // for each entry in array, if entry is not in map store it
+        if (!map.has(array[i])) {
+            map.set(array[i], i)
+        }
     }
     return false
 }
-
-export function addDuplicates(subArray: number[], duplicates: number[]) {
-    let map = new Map<number, number>()
-
-    for (let i = 0; i < subArray.length; i++) {
-        if (map.get(subArray[i])) {
-            map.set(subArray[i], map.get(subArray[i])! + 1)
-        }
-        map.set(subArray[i], 1)
-    }
-
-    for (let key of map.keys()) {
-        if (map.get(key)! > 1) {
-            duplicates.push(key)
-        }
-    }
-
-    return duplicates
-}
-
-/*
-    [1, 2, 3, 1, 5], k = 3
-     s
-     e
-
-     i   s    e
-     0   0    0
-     1   0    1
-     2   0    2
-     3   0    3
-
-    let duplicates: number[] be an array of duplicates found
-    let start: number be the index of the start of range
-    let end: number be the index of the end of the range
-    let k: range to search duplicates within.  k > 0
-
-    start = 0
-    end   = 0
-
-    FOR end from 0 to N - 1:
-        if (end - start > k) {
-            start++
-        }
-        end++
-        hasDuplicates(subArray, duplicates)
-
-
-    function addDuplicates(subArry, duplicates) {
-        let map = {}
-        FOR i from 0 to M - 1:
-            if (map[subarr[i]]) {
-                map[subarr[i]] += 1
-            }
-            map[subarr[i]] = 1
-
-        for (key in map) {
-            if key not in duplicates:
-                duplicates.push(key)
-        }
-    }
-
-
-*/
