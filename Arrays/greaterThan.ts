@@ -1,22 +1,5 @@
-/*
-    Given an unsorted array of integers, print all elements which are
-    greater than all elements to the right of that element
+import { MyStack, MyStackNode } from '../Stacks/Stack'
 
-    Example input: [10, 4, 6, 3, 5]
-    Exampe output: [10, 6, 5]
-*/
-
-/*
-    Naive solution:
-
-    let result = []
-
-    FOR each i from 0 to N - 2:
-        FOR each j from i + 1 to N - 1;
-            if (arr[j] >= arr[i]) break;
-        
-        result.push[arr[i]]
-*/
 
 export function greaterThan(arr: number[]) {
     // input: [10, 4, 6, 3, 5] 
@@ -38,6 +21,19 @@ export function greaterThan(arr: number[]) {
             // once i pointer reaches second last element, 
             // add last element onto the array
             result.push(arr[i + 1])
+        }
+    }
+    return result
+}
+
+export function optimizedGreaterThan(arr: number[]) {
+    // input: [10, 4, 6, 3, 5] 
+    let MAX_SO_FAR = -Infinity
+    let result = []
+    for (let i = arr.length - 1; i > -1; i--) {
+        if (arr[i] > MAX_SO_FAR) {
+            result.unshift(arr[i])
+            MAX_SO_FAR = arr[i]
         }
     }
     return result
