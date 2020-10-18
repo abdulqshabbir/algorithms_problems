@@ -21,8 +21,3 @@ import { segregateArray } from './sortBinaryArray'
 test('segretateArray works', () => {
     expect(segregateArray([9, -3, 5, -2, -8, -6, 1, 3])).toStrictEqual([-3, -2, -8, -6, 5, 9, 1, 3])
 })
-
-import { createAlternateArray } from './sortBinaryArray'
-
-test('createAlternateArray works', () => {
-})

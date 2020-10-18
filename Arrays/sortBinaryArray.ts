@@ -16,7 +16,6 @@ export const createAlternateArray = (arr: number[]) => {
 
     for (let i = start; i += 2; i < arr.length) {
         swap(arr, i, end)
-        end++
     }
     return arr
 }
