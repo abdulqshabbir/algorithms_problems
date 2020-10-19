@@ -28,7 +28,7 @@ export const optimizedEqualSumPartition = (arr: number[]): number | null => {
 divides the array into two non-empty subarrays having
 equal sum */
 
-export const equalSumPartition = (arr: number[]): number => {
+export const equalSumPartition = (arr: number[]): number | undefined => {
     let leftSum = 0
     let rightSum = 0
 
