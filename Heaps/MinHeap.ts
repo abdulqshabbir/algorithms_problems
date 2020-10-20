@@ -33,26 +33,49 @@ export class MinHeap {
         }
         return this.nodes[Math.floor((index - 1) / 2)]
     }
+    public getParentIndex(index: number): number | null {
+        let parentIndex = Math.floor((index - 1) / 2)
+
+        if (parentIndex < 0 || parentIndex >= this.nodes.length) return null
+
+        return parentIndex
+    }
     public insert(key: number, value: number): MinHeap {
+        debugger;
         if (this.nodes.length === 0) {
             // if heap is empty, place node at root
-            this.nodes[0] = { key, value }
+            this.nodes.push({ key, value })
             return this
         } else {
             // else, place item at the bottom of heap and
             // heapify-up
-            let lastIndex = this.nodes.length
-            this.nodes[lastIndex] = { key, value }
+            this.nodes.push({ key, value })
             this.heapifyUp()
             return this
         }
     }
     private heapifyUp() {
-        let indexOfInsertion = this.nodes.length
-        let parent = this.getParent(indexOfInsertion)
+        let childIndex = this.nodes.length - 1
+        let parentIndex = this.getParentIndex(childIndex)
+        let child = this.nodes[childIndex]
 
-        while (parent) {
-            if ()
+        if (parentIndex === null) return;
+        let parent = this.nodes[parentIndex]
+
+        while (parent.key > child.key) {
+            this.swap(parentIndex, childIndex)
+            childIndex = parentIndex
+            parentIndex = this.getParentIndex(childIndex)
+
+            if (!parentIndex) return
+
+            child = this.nodes[childIndex]
+            parent = this.nodes[parentIndex]
         }
+    }
+    private swap(indexA: number, indexB: number) {
+        let temp = this.nodes[indexA]
+        this.nodes[indexA] = this.nodes[indexB]
+        this.nodes[indexB] = temp
     }
 }
