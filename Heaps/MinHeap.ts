@@ -11,19 +11,34 @@ export class MinHeap {
     constructor(nodes: Node[] = []) {
         this.nodes = nodes
     }
-    public getLeftChild(index: number): Node | null {
+    public getLeftChildIndex(index: number): number | null {
         if ((2 * index + 1) >= this.nodes.length
             || (2 * index + 1) < 0) {
             return null
         }
-        return this.nodes[2 * index + 1]
+        return 2 * index + 1
     }
-    public getRightChild(index: number): Node | null {
+    public getLeftChild(index: number): Node | null {
+        let leftChildIndex = this.getLeftChildIndex(index)
+
+        if (leftChildIndex === null) return null
+
+        return this.nodes[leftChildIndex]
+    }
+    public getRightChildIndex(index: number): number | null {
         if ((2 * index + 2) >= this.nodes.length
             || (2 * index + 2) < 0) {
             return null
         }
-        return this.nodes[2 * index + 2]
+        return 2 * index + 2
+
+    }
+    public getRightChild(index: number): Node | null {
+        let rightChildIndex = this.getRightChildIndex(index)
+
+        if (rightChildIndex === null) return null
+
+        return this.nodes[rightChildIndex]
     }
     public getParent(index: number): Node | null {
         let parentIdx = Math.floor((index - 1) / 2)
@@ -53,6 +68,29 @@ export class MinHeap {
             this.heapifyUp()
             return this
         }
+    }
+    public pop(): Node | null {
+
+        if (this.nodes.length === 0) return null
+
+        // swap root with last child and remove
+        this.swap(0, this.nodes.length - 1)
+        let removed = this.nodes.pop()
+
+        // fix the heap property
+        this.heapifyDown()
+        return removed ? removed : null
+    }
+    private heapifyDown() {
+        /*
+            WHILE child.key < parent.key
+                swap parent with smaller of the two children
+                make child the "new" parent
+                recalculate child
+        */
+        let parentIndex = 0
+        let parent = this.nodes[0]
+        let childIndex = this.getLeftChild
     }
     private heapifyUp() {
         let childIndex = this.nodes.length - 1

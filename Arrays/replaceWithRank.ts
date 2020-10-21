@@ -3,6 +3,8 @@ element with its corresponding rank in the array.
 e.g. [10, 8, 15, 12, 6, 20, 1] -> [4, 3, 6, 5, 2, 7, 1]
 */
 
+import { MinHeap } from "../Heaps/MinHeap"
+
 export const replaceWithRank = (arr: number[]) => {
     let sorted = arr.slice().sort((a, b) => a - b)
     let map = new Map()
@@ -13,4 +15,14 @@ export const replaceWithRank = (arr: number[]) => {
         const rank = map.get(e)
         return rank
     })
+}
+
+export const replaceWithRankUsingHeap = (arr: number[]) => {
+    let heap = new MinHeap()
+
+    for (let i = 0; i < arr.length; i++) {
+        heap.insert(arr[i], arr[i])
+    }
+
+    return heap.nodes.map((node, index) => index + 1)
 }
