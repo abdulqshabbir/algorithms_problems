@@ -16,3 +16,35 @@ export const replaceWithRank = (arr: number[]) => {
         return rank
     })
 }
+
+export const replaceWithRankUsingHeap = (arr: number[]) => {
+    /*
+        FOR each i from 0 to N - 1:
+            insert arr[i] into min heap with key being arr[i] and value being i (each insertion takes O(logn))
+
+
+        let transformedArr = new Array(arr.length)
+        
+        FOR each i from 0 to N -1;
+            pop off min heap -> {key: entry, value: index}
+            use popped node to index into transformedArr and set rank -> transformedArr[popped.value] = i + 1
+    */
+    let heap = new MinHeap()
+
+    for (let i = 0; i < arr.length; i++) {
+        heap.insert(arr[i], i)
+    }
+
+    let transformedArr = new Array(arr.length)
+
+    for (let i = 0; i < arr.length; i++) {
+        let poppedNode = heap.pop()
+
+        if (poppedNode !== null) {
+            let rank = i + 1
+            let index = poppedNode.value
+            transformedArr[index] = rank
+        }
+    }
+    return transformedArr
+}
