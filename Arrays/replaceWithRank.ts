@@ -16,13 +16,3 @@ export const replaceWithRank = (arr: number[]) => {
         return rank
     })
 }
-
-export const replaceWithRankUsingHeap = (arr: number[]) => {
-    let heap = new MinHeap()
-
-    for (let i = 0; i < arr.length; i++) {
-        heap.insert(arr[i], arr[i])
-    }
-
-    return heap.nodes.map((node, index) => index + 1)
-}

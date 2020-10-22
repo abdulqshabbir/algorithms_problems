@@ -40,6 +40,26 @@ export class MinHeap {
 
         return this.nodes[rightChildIndex]
     }
+    public getMinChildIndex(index: number): number | null {
+        let leftChildIndex = this.getLeftChildIndex(index)
+        let rightChildIndex = this.getRightChildIndex(index)
+        let leftChild = null
+        let rightChild = null
+
+        if (leftChildIndex !== null) leftChild = this.nodes[leftChildIndex]
+
+        if (rightChildIndex !== null) rightChild = this.nodes[rightChildIndex]
+
+        if (leftChild === null && rightChild === null) return null
+
+        if (leftChild === null) return rightChildIndex
+
+        if (rightChild === null) return leftChildIndex
+
+        if (leftChild.key <= rightChild.key) return leftChildIndex
+
+        else return rightChildIndex
+    }
     public getParent(index: number): Node | null {
         let parentIdx = Math.floor((index - 1) / 2)
 
@@ -90,7 +110,23 @@ export class MinHeap {
         */
         let parentIndex = 0
         let parent = this.nodes[0]
-        let childIndex = this.getLeftChild
+        let minChildIndex = this.getMinChildIndex(parentIndex)
+
+        if (minChildIndex === null) return
+
+        let minChild = this.nodes[minChildIndex]
+        while (minChild.key < parent.key) {
+
+            if (minChildIndex === null) return
+
+            this.swap(parentIndex, minChildIndex)
+            parentIndex = minChildIndex
+
+            minChildIndex = this.getMinChildIndex(parentIndex)
+            if (minChildIndex === null) return
+
+            minChild = this.nodes[minChildIndex]
+        }
     }
     private heapifyUp() {
         let childIndex = this.nodes.length - 1

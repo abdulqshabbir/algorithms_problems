@@ -60,3 +60,35 @@ test('insert works', () => {
     expect(heap.nodes[0]).toEqual({ key: 1, value: 1 })
     expect(heap.nodes[1]).toEqual({ key: 3, value: 3 })
 })
+
+test('delete works', () => {
+    let heap = new MinHeap()
+
+    heap.insert(3, 3)
+    expect(heap.nodes.length).toBe(1)
+    expect(heap.nodes[0]).toEqual({ key: 3, value: 3 })
+
+    heap.insert(1, 1)
+    expect(heap.nodes.length).toBe(2)
+    expect(heap.nodes[0]).toEqual({ key: 1, value: 1 })
+    expect(heap.nodes[1]).toEqual({ key: 3, value: 3 })
+
+    heap.insert(2, 2)
+    expect(heap.nodes.length).toBe(3)
+    expect(heap.nodes[0]).toEqual({ key: 1, value: 1 })
+    expect(heap.nodes[1]).toEqual({ key: 3, value: 3 })
+    expect(heap.nodes[2]).toEqual({ key: 2, value: 2 })
+
+    heap.pop()
+    expect(heap.nodes.length).toBe(2)
+    expect(heap.nodes[0]).toEqual({ key: 2, value: 2 })
+    expect(heap.nodes[1]).toEqual({ key: 3, value: 3 })
+
+    heap.pop()
+    expect(heap.nodes.length).toBe(1)
+    expect(heap.nodes[0]).toEqual({ key: 3, value: 3 })
+
+    heap.pop()
+    expect(heap.nodes.length).toBe(0)
+    expect(heap.nodes).toEqual([])
+})
