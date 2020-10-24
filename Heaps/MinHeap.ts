@@ -76,7 +76,6 @@ export class MinHeap {
         return parentIndex
     }
     public insert(key: number, value: number): MinHeap {
-        debugger;
         if (this.nodes.length === 0) {
             // if heap is empty, place node at root
             this.nodes.push({ key, value })
@@ -141,7 +140,7 @@ export class MinHeap {
             childIndex = parentIndex
             parentIndex = this.getParentIndex(childIndex)
 
-            if (!parentIndex) return
+            if (parentIndex === null) return
 
             child = this.nodes[childIndex]
             parent = this.nodes[parentIndex]
