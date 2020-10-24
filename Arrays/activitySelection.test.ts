@@ -1,4 +1,5 @@
-import { activitySelection, Activity } from './Arrays/activitySelection'
+import { activitySelection, Activity } from './activitySelection'
+
 let activities: Activity[] = [
     { start: 1, end: 4 },
     { start: 3, end: 5 },
@@ -20,4 +21,6 @@ let expectedResult: Activity[] = [
     { start: 12, end: 14 },
 ]
 
-activitySelection(activities)
+test("activity selection works", () => {
+    expect(activitySelection(activities)).toStrictEqual(expectedResult)
+})
