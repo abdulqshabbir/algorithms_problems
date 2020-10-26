@@ -3,29 +3,26 @@
     represents a min heap or not
 */
 
-export const isMinHeap = (arr: number[]): boolean => {
+export const isMinHeap = (arr: number[], currentIndex: number = 0): boolean => {
     /*
-        Min heap property: parent <= children
-
-        Start from root and make that the parent
-        Find the two children of parent
-        if largerChild <= parent keep going
-        if largerChild > parent return false
-    */
-
-    if (arr.length === 0) return false
-
-    let parentIndex = 0
-    let parent = arr[parentIndex]
-    let maxChild = getMaxChild(parentIndex, arr)
-
-    while (maxChild) {
-        if (maxChild > parent) {
+        if currentNode > leftNode or currentNode > rightNode:
             return false
-        }
-    }
+        
+        else:
+            call isMinHeap on left and right subtrees
+
+            isMinHeap(arr, leftChildIndex)
+            isMinHeap(arr, rightChildIndex)
+
+    */
     return true
 }
+
+function isLeafIndex(index: number, arr: number[]): boolean {
+    if (2 * index + 2 > arr.length) return true
+    else return false
+}
+
 function getLeftChildIndex(index: number, arr: number[]): number | null {
     const leftChildIndex = 2 * index + 1
 
