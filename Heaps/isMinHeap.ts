@@ -3,44 +3,23 @@
     represents a min heap or not
 */
 
-export const isMinHeap = (arr: number[], rootIndex: number = 0): boolean => {
-    /*
-        min-heap property:  root <= childA and childB if children exist
-
-        base case:
-            IF currentNode is leaf return true since every leaf node is a min-heap 
-        recursive case:
-            IF currentNode is an internalNode:
-                IF currentNode > childA || currentNode > childB:
-                    return false 
-                ELSE
-                    isMinHeap(arr, leftChildIndex)
-                    isMinHeap(arr, rightChildIndex)
-
-    */
+export const isMinHeap = (arr: number[], i: number = 0): boolean => {
     debugger;
-    const isLeaf = isLeafNode(rootIndex, arr)
-    const isInternal = isInternalNode(rootIndex, arr)
-    const root = arr[rootIndex]
-    const leftChild = getLeftChild(rootIndex, arr)
-    const rightChild = getRightChild(rootIndex, arr)
-
-    // base ccase
-    if (isLeaf) {
+    // base case: leaf nodes satisfy min-heap property
+    if (i >= Math.floor((arr.length - 2) / 2)) {
         return true
     }
-    // recursive step
-    else {
-        if (isInternal) {
-            if (root > leftChild! || root > rightChild!) {
-                return false
-            } else {
-                isMinHeap(arr, 2 * rootIndex + 1)
-                isMinHeap(arr, 2 * rootIndex + 2)
-            }
-        }
-        return false
+    // recursive step: check if root >= each child and if left and right
+    // subtrees also are min-heaps
+    if (
+        arr[i] <= arr[2 * i + 1] &&
+        arr[i] <= arr[2 * i + 2] &&
+        isMinHeap(arr, 2 * i + 1) &&
+        isMinHeap(arr, 2 * i + 2)
+    ) {
+        return true
     }
+    return false
 }
 
 function isLeafNode(index: number, arr: number[]): boolean {
