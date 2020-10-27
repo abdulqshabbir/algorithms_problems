@@ -3,24 +3,54 @@
     represents a min heap or not
 */
 
-export const isMinHeap = (arr: number[], currentIndex: number = 0): boolean => {
+export const isMinHeap = (arr: number[], rootIndex: number = 0): boolean => {
     /*
-        if currentNode > leftNode or currentNode > rightNode:
-            return false
-        
-        else:
-            call isMinHeap on left and right subtrees
+        min-heap property:  root <= childA and childB if children exist
 
-            isMinHeap(arr, leftChildIndex)
-            isMinHeap(arr, rightChildIndex)
+        base case:
+            IF currentNode is leaf return true since every leaf node is a min-heap 
+        recursive case:
+            IF currentNode is an internalNode:
+                IF currentNode > childA || currentNode > childB:
+                    return false 
+                ELSE
+                    isMinHeap(arr, leftChildIndex)
+                    isMinHeap(arr, rightChildIndex)
 
     */
-    return true
+    debugger;
+    const isLeaf = isLeafNode(rootIndex, arr)
+    const isInternal = isInternalNode(rootIndex, arr)
+    const root = arr[rootIndex]
+    const leftChild = getLeftChild(rootIndex, arr)
+    const rightChild = getRightChild(rootIndex, arr)
+
+    // base ccase
+    if (isLeaf) {
+        return true
+    }
+    // recursive step
+    else {
+        if (isInternal) {
+            if (root > leftChild! || root > rightChild!) {
+                return false
+            } else {
+                isMinHeap(arr, 2 * rootIndex + 1)
+                isMinHeap(arr, 2 * rootIndex + 2)
+            }
+        }
+        return false
+    }
 }
 
-function isLeafIndex(index: number, arr: number[]): boolean {
+function isLeafNode(index: number, arr: number[]): boolean {
     if (2 * index + 2 > arr.length) return true
-    else return false
+    return false
+}
+
+function isInternalNode(index: number, arr: number[]): boolean {
+    if (2 * index + 2 <= arr.length) return true
+    return false
 }
 
 function getLeftChildIndex(index: number, arr: number[]): number | null {
