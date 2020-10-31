@@ -1,4 +1,11 @@
-import { isMinHeap } from './Heaps/isMinHeap'
+import { MinHeap } from './Heaps/MinHeap'
 
-isMinHeap([2, 3, 4, 5, 10, 15])
-isMinHeap([2, 10, 4, 5, 3, 15])
+let nodes = []
+let keys = [1, 12, 3, 5, 10]
+
+for (let key of keys) {
+    nodes.push({ key: key, value: key })
+}
+
+let heap = new MinHeap(nodes)
+heap.minHeapify(1)

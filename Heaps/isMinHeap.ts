@@ -21,3 +21,9 @@ export const isMinHeap = (arr: number[], i: number = 0): boolean => {
     }
     return false
 }
+
+export const isMinHeapIterative = (arr: number[]): boolean => {
+
+
+    return false
+}

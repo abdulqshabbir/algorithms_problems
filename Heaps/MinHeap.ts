@@ -151,4 +151,35 @@ export class MinHeap {
         this.nodes[indexA] = this.nodes[indexB]
         this.nodes[indexB] = temp
     }
+    public minHeapify(i: number): Node[] {
+        debugger;
+        // Assume trees rooted at left(i) and right(i) are minHeaps and there is a single min-heap violation
+        // at index i
+        let l = this.getLeftChildIndex(i)
+        let r = this.getRightChildIndex(i)
+        let N = this.nodes.length
+        let minIndex = i
+
+        if (
+            l !== null &&
+            this.nodes[l].key < this.nodes[i].key
+        ) {
+            minIndex = l
+        }
+
+        if (
+            r !== null &&
+            r <= N &&
+            this.nodes[r].key < this.nodes[minIndex].key
+        ) {
+            minIndex = r
+        }
+
+        if (minIndex === i) {
+            return this.nodes
+        } else {
+            this.swap(i, minIndex)
+            return this.minHeapify(minIndex)
+        }
+    }
 }

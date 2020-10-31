@@ -92,3 +92,42 @@ test('delete works', () => {
     expect(heap.nodes.length).toBe(0)
     expect(heap.nodes).toEqual([])
 })
+
+test('minHeapify works when one exchange is needed', () => {
+    let nodes = []
+    let keys = [1, 12, 3, 5, 10]
+
+    let expectedNodes = []
+    let expectedKeys = [1, 5, 3, 12, 10]
+
+    for (let key of keys) {
+        nodes.push({ key: key, value: key })
+    }
+
+    for (let key of expectedKeys) {
+        expectedNodes.push({ key: key, value: key })
+    }
+
+    let heap = new MinHeap(nodes)
+
+    expect(heap.minHeapify(1)).toEqual(expectedNodes)
+})
+
+test('minHeap works for more than one exchange', () => {
+    let nodes = []
+    let keys: number[] = [1, 12, 3, 5, 10, 4, 5, 6]
+
+    let expectedNodes = []
+    let expectedKeys: number[] = [1, 5, 3, 6, 10, 4, 5, 12]
+
+    for (let key of keys) {
+        nodes.push({ key: key, value: key })
+    }
+
+    for (let key of expectedKeys) {
+        expectedNodes.push({ key: key, value: key })
+    }
+
+    let heap = new MinHeap(nodes)
+    expect(heap.minHeapify(1)).toEqual(expectedNodes)
+})
