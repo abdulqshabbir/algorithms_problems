@@ -27,7 +27,33 @@ export const isMinHeap = (arr: number[], i: number = 0): boolean => {
 }
 
 export const isMinHeapIterative = (arr: number[]): boolean => {
+    /*
+        FOR each node from i = n/2 + 1 to 0:
+            if leaf node do nothing
+            if rightchildexists:
+                check if left and right child >= arr[i]
+                    if not return false
+            else:
+                check if left child >= arr[i]
+                    if not return false
 
+        return true
+    */
+    let N = arr.length
+    for (let i = Math.floor(N / 2) + 1; i >= 0; i--) {
+        let rightChildExists = 2 * i + 2 < N
 
-    return false
+        if (i > Math.floor((N - 2) / 2)) {
+            continue
+        }
+        if (rightChildExists) {
+            if (arr[i] > arr[2 * i + 1] || arr[i] > arr[2 * i + 2]) {
+                return false
+            }
+        }
+        if (arr[i] > arr[2 * i + 1]) {
+            return false
+        }
+    }
+    return true
 }
