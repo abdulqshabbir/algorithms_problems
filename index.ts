@@ -1,3 +1,5 @@
-import { isMinHeap } from './Heaps/isMinHeap'
+import {
+    findKthLargestElementUsingHeap
+} from './Arrays/findKthLargestElement'
 
-isMinHeap([2, 3, 4, 5, 10, 15])
+findKthLargestElementUsingHeap([7, 4, 6, 3, 9, 1], 2)
