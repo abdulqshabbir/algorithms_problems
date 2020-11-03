@@ -84,7 +84,8 @@ export class MinHeap {
             // else, place item at the bottom of heap and
             // heapify-up
             this.nodes.push({ key, value })
-            this.heapifyUp()
+            this.swap(0, this.nodes.length - 1)
+            this.minHeapify(0)
             return this
         }
     }
@@ -115,7 +116,6 @@ export class MinHeap {
 
         let minChild = this.nodes[minChildIndex]
         while (minChild.key < parent.key) {
-
             if (minChildIndex === null) return
 
             this.swap(parentIndex, minChildIndex)
@@ -152,7 +152,6 @@ export class MinHeap {
         this.nodes[indexB] = temp
     }
     public minHeapify(i: number): Node[] {
-        debugger;
         // Assume trees rooted at left(i) and right(i) are minHeaps and there is a single min-heap violation
         // at index i
         let l = this.getLeftChildIndex(i)
