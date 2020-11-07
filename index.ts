@@ -1,5 +1,26 @@
-import {
-    findKthLargestElementUsingHeap
-} from './Arrays/findKthLargestElement'
+import { LinkedList } from './LinkedList/LinkedList'
 
-findKthLargestElementUsingHeap([7, 4, 6, 3, 9, 1], 2)
+let list = new LinkedList()
+list.insertAtEnd(5)
+
+let copy = list.copyList(list.head)
+console.log('original list')
+list.print()
+console.log('copied list')
+copy.print()
+
+list.insertAtEnd(5)
+list.insertAtEnd(6)
+copy = list.copyList(list.head)
+console.log('original list')
+list.print()
+console.log('copied list')
+copy.print()
+
+list.insertAtFront(1)
+list.insertAtEnd(1)
+copy = list.copyList(list.head)
+console.log('original list')
+list.print()
+console.log('copied list')
+copy.print()
