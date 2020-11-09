@@ -73,6 +73,51 @@ export class LinkedList {
 
         return this.head
     }
+    removeFromFront(): number | null {
+        // takes a non-empty list, deletes head node and returns the head node's data
+        if (this.head === null) {
+            return null
+        }
+        let rest = this.head.next // reference for rest of list
+        let head = this.head // reference to "old" head
+        this.head = rest
+        head.next = null // prevent rest of linked list from being accesssed
+        return head.data
+    }
+    insertDataInSortedPosition(data: number) {
+        // pre-condition: linked list is already in sorted order
+        // head -> 1 -> 4 -> 9 -> null
+        // newNode: 5
+        // 
+        let newNode = new Node(data)
+        if (this.head === null) {
+            this.head = newNode
+        }
+        let current = this.head
+        let prev = null
+        while (current.next && newNode.data > current.data) {
+            if (prev === null) {
+                prev = this.head
+            } else {
+                prev = prev.next
+            }
+            current = current.next
+        }
+        if (current.next === null) {
+            this.insertAtEnd(newNode.data)
+            return this
+        }
+        if (prev === null) {
+            this.insertAtFront(newNode.data)
+            return this
+        }
+        else {
+            let rest = current
+            prev.next = newNode
+            newNode.next = rest
+            return this
+        }
+    }
     print() {
         let current = this.head
         let result = ''
