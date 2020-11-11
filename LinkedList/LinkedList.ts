@@ -134,4 +134,20 @@ export class LinkedList {
         console.log(result)
         return result
     }
+    convertToArray() {
+        // return empty array for empty linked list
+        if (this.head === null) return []
+
+        let current = this.head
+        let result = []
+
+        result.push(current.data)
+
+        while (current.next) {
+            current = current.next
+            result.push(current.data)
+        }
+
+        return result
+    }
 }

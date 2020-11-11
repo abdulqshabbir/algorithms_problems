@@ -1,14 +1,11 @@
 import { LinkedList } from './LinkedList/LinkedList'
 
 let list = new LinkedList()
+console.log(list.convertToArray())
 list.insertAtEnd(1)
+console.log(list.convertToArray())
 list.insertAtEnd(4)
 list.insertAtEnd(9)
 list.insertAtEnd(16)
-list.print()
-list.insertDataInSortedPosition(0)
-list.print()
-list.insertDataInSortedPosition(5)
-list.print()
-list.insertDataInSortedPosition(25)
-list.print()
+list.removeFromFront()
+console.log(list.convertToArray())
