@@ -86,12 +86,12 @@ export class LinkedList {
     }
     insertDataInSortedPosition(data: number) {
         // pre-condition: linked list is already in sorted order
-        // head -> 1 -> 4 -> 9 -> null
-        // newNode: 5
-        // 
+        // note: this function mutates "this" linkedList
+
         let newNode = new Node(data)
         if (this.head === null) {
             this.head = newNode
+            return this
         }
         let current = this.head
         let prev = null
@@ -149,5 +149,28 @@ export class LinkedList {
         }
 
         return result
+    }
+    sortLinkedLink() {
+        debugger;
+        // make a copy of "this" linked list
+        let listCopy = new LinkedList()
+        listCopy.copyList(this.head)
+
+        // reset this object's head to null
+        this.head = null
+        let current = listCopy.head
+
+        if (current === null) {
+            // list is empty, so just return current list
+            return this
+        }
+
+        this.insertDataInSortedPosition(current.data)
+
+        while (current.next !== null) {
+            current = current.next
+            this.insertDataInSortedPosition(current.data)
+        }
+        return this
     }
 }

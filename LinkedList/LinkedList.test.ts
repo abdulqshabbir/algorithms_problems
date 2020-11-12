@@ -48,9 +48,4 @@ test('LinkedList.insertAtEnd works', () => {
 })
 
 test('LinkedList.removeFromFront works', () => {
-
-})
-
-test('LinkedList.removeFromEnd works', () => {
-
 })
